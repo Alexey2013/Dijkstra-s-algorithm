@@ -1,10 +1,9 @@
 #include <iomanip>
-#include "dijkstra.h"
+#include "dheap.h"
 
 
 int main() {
-    // Example usage
-    DHeap heap(3);  // 3-ary heap
+    DHeap heap(3); 
 
     heap.insert(5, 100);
     heap.insert(3, 200);
@@ -14,7 +13,7 @@ int main() {
     cout << "Heap after insertion: ";
     heap.print();
 
-    cout << "Extracted min: " << heap.extractMin().first << endl;
+    cout << "Extracted min: " << heap.extractMin().get_first() << endl;
 
     cout << "Heap after extracting min: ";
 
