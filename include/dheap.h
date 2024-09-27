@@ -64,7 +64,9 @@ private:
     }
 
 public:
-    DHeap(int d) : d(d) {}
+    DHeap(int d) : d(d) {
+        if (d < 2) throw runtime_error("Degree of heap must be at least 2.");
+    }
 
     void insert(int key, int value) {
         v.push_back({ key, value });
