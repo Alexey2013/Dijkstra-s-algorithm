@@ -5,19 +5,19 @@
 int main() {
     DHeap heap(3); 
 
-    heap.insert(5, 100);
-    heap.insert(3, 200);
-    heap.insert(8, 300);
-    heap.insert(2, 400);
+    heap.insert(1000, 7);
+    heap.insert(5000,4);
+    heap.insert(300, 2);
+    heap.insert(400, 1);
 
-    cout << "Heap after insertion: ";
-    heap.print();
+    std::cout << "Heap after insertion: ";
+    std::cout << heap << std::endl;
 
-    cout << "Extracted min: " << heap.extractMin().get_first() << endl;
+    std::cout << "Extracted min: " << heap.extractMin().first << std::endl;
 
-    cout << "Heap after extracting min: ";
+    std::cout << "Heap after extracting min: ";
 
-    heap.print();
+    std::cout << heap<< std::endl;
 
     return 0;
 }

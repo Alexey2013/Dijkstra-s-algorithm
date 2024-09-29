@@ -1,32 +1,31 @@
 #ifndef _BASE_H
 #define _BASE_H
 
-void Swap(int& a, int& b) {
-    int temp = a;
-    a = b;
-    b = temp;
-}
+template <typename T>
+T myMin(const T& a, const T& b) { return (a < b) ? a : b; }
 
 template<typename T1, typename T2>
 class Pair {
-private:
-    T1 first;  
+public:
+    T1 first;
     T2 second;
 public:
     Pair() : first(T1()), second(T2()) {}
     Pair(const T1 f, const T2 s) : first(f), second(s) {}
 
-    Pair(const Pair& p) : first(p.get_first()), second(p.get_second()) {}
+    Pair(const Pair& p) : first(p.first), second(p.second) {}
+    Pair(std::initializer_list<T1> list) {
+        auto it = list.begin();
+        first = *it;
+        second = *(++it);
+    }
 
-    T1 get_first() const {return first;}
-    T2 get_second() const { return second;}
+    bool operator<(const Pair<T1, T2>& other) const {
+        return first < other.first || (first == other.first && second < other.second);
+    }
 
-    void set_first(T1 f) { first = f;}
-    void set_second(T2 s) { second = s; }
-
-    friend std::ostream& operator<<(std::ostream& os, const Pair& p) {
-        os << "(" << p.first << ", " << p.second << ")";
-        return os;
+    bool operator>(const Pair<T1, T2>& other) const {
+        return other < *this;
     }
 
 };
@@ -49,7 +48,7 @@ public:
 
     ~my_vector()
     {
-        delete arr;
+        delete[] arr;
         capacity = 0;
         size_ = 0;
     }
@@ -57,24 +56,27 @@ public:
     void push_back(T value)
     {
         if (size_ == capacity) {
-            T* temp = new T[capacity + 10];
+            T* temp = new T[capacity + 4];
             for (int i = 0; i < capacity; i++) {
                 temp[i] = arr[i];
             }
             delete[] arr;
-            capacity += 10;
+            capacity += 4;
             arr = temp;
         }
         arr[size_] = value;
         size_++;
     }
 
-    void pop_back()
-    {
-        size_--;
+    int size() { return size_; }
+
+
+    void pop_back() {
+        if (size_ > 0) {
+            size_--;
+        }
     }
 
-    int size(){return size_;}
     void clear() { size_ = 0; }
     bool empty() {return size_ == 0;}
 
@@ -86,6 +88,12 @@ public:
             }
             size_--;
         }
+    }
+
+    T& back() {
+        if (size_ > 0) return arr[size_ - 1];
+
+        throw std::out_of_range("Vector is empty");
     }
 
 };
