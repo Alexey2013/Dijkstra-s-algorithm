@@ -1,3 +1,5 @@
+#ifndef _DHEAP_H
+#define _DHEAP_H
 #include <vector>
 #include <iostream>
 #include "Base.h"
@@ -103,3 +105,6 @@ public:
     }
 
 };
+
+
+#endif 

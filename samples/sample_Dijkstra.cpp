@@ -1,5 +1,4 @@
-#include <iomanip>
-#include "dheap.h"
+#include "Dijkstra.h"
 
 
 int main() {
@@ -18,7 +17,7 @@ int main() {
     std::cout << "Heap after extracting min: ";
 
     std::cout << heap<< std::endl;
-
+    algorithm::Dijkstra();
     return 0;
 }
 
