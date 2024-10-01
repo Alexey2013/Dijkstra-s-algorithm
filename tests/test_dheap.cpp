@@ -6,15 +6,31 @@ TEST(DHeap, can_create_dheap_with_d)
 	ASSERT_NO_THROW(DHeap heap(3));
 }
 
-TEST(DHeap, throws_when_arity_is_negative)
+TEST(DHeap, throws_when_d_is_negative)
 {
 	ASSERT_ANY_THROW(DHeap heap(-1));
+}
+
+TEST(DHeap, can_create_large_d) {
+	DHeap heap(100);
+	ASSERT_NO_THROW(heap.insert(1, 1));
+	ASSERT_NO_THROW(heap.insert(2, 1));
 }
 
 TEST(DHeap, can_insert_in_dheap)
 {
 	DHeap heap(2);
-	ASSERT_NO_THROW(heap.insert(2,1));
+	ASSERT_NO_THROW(heap.insert(2, 1));
+}
+
+TEST(DHeap, can_insert_large_number_of_elements) {
+	DHeap heap(2);
+	for (int i = 0; i < 1000; ++i) {
+		heap.insert(i, i);
+	}
+	for (int i = 0; i < 1000; ++i) {
+		EXPECT_EQ(heap.extractMin().first, i);
+	}
 }
 
 TEST(DHeap, can_insert_and_check_if_empty) {
@@ -62,40 +78,44 @@ TEST(DHeap, throws_when_extracting_min_after_emptying_heap) {
 	ASSERT_ANY_THROW(heap.extractMin());
 }
 
-
 TEST(DHeap, can_extract_min_from_multiple_elements) {
 	DHeap heap(3);
-	heap.insert(5, 1);
-	heap.insert(2, 2);
-	heap.insert(8, 3);
-	heap.insert(1, 4);
+	heap.insert(1, 100);
+	heap.insert(2, 50);
+	heap.insert(3, 2);
+	heap.insert(4, 1);
 
-	EXPECT_EQ(heap.extractMin().first, 1);
+	EXPECT_EQ(heap.extractMin().first, 4);
+	EXPECT_EQ(heap.extractMin().first, 3);
 	EXPECT_EQ(heap.extractMin().first, 2);
-	EXPECT_EQ(heap.extractMin().first, 5);
-	EXPECT_EQ(heap.extractMin().first, 8);
-}
-
-
-TEST(DHeap, can_insert_multiple_elements_and_check_min) {
-    DHeap heap(2);
-    heap.insert(10, 1);
-    heap.insert(20, 2);
-    heap.insert(5, 3);
-
-    EXPECT_EQ(heap.extractMin().first, 5);
-    EXPECT_EQ(heap.extractMin().first, 10);
-    EXPECT_EQ(heap.extractMin().first, 20);
+	EXPECT_EQ(heap.extractMin().first, 1);
 }
 
 TEST(DHeap, can_handle_duplicate_elements) {
     DHeap heap(3);
-    heap.insert(2, 1);
+    heap.insert(1, 2);
     heap.insert(2, 2);
-    heap.insert(2, 3);
+    heap.insert(3, 2);
 
-    EXPECT_EQ(heap.extractMin().first, 2);
-    EXPECT_EQ(heap.extractMin().first, 2);
-    EXPECT_EQ(heap.extractMin().first, 2);
+    EXPECT_EQ(heap.extractMin().second, 2);
+    EXPECT_EQ(heap.extractMin().second, 2);
+    EXPECT_EQ(heap.extractMin().second, 2);
 	ASSERT_ANY_THROW(heap.extractMin());
 }
+
+TEST(DHeap, can_insert_and_extract_negative_numbers) {
+	DHeap heap(2);
+	heap.insert(1, -1);
+	heap.insert(2, -3);
+	heap.insert(3, -2);
+
+	EXPECT_EQ(heap.extractMin().first, 2);
+	EXPECT_EQ(heap.extractMin().first, 3);
+	EXPECT_EQ(heap.extractMin().first, 1);
+}
+ 
+//TEST(DHeap, throws_when_inserting_with_duplicate_keys) {
+//	DHeap heap(2);
+//	heap.insert(1, 1);
+//	ASSERT_ANY_THROW(heap.insert(2, 1));
+//}
