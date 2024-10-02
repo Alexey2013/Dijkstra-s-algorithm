@@ -3,7 +3,7 @@
 #include <iostream>
 
 template <typename T>
-T Min(const T& a, const T& b) { return (a < b) ? a : b; }
+T min(const T& a, const T& b) { return (a < b) ? a : b; }
 
 template<typename T1, typename T2>
 class Pair {
