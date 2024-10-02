@@ -13,10 +13,13 @@ public:
     Vector(const size_t n, const  T default_value);
     Vector(const Vector& other);
     ~Vector();
+
+    void reallocate(size_t newCapacity);
 public:
     T& operator[](const  size_t index);
     void push_back(const T value);
     void pop_back();
+    void resize(const  size_t size);
     void erase(const size_t index);
     T& back() const;
     void clear() { size_ = 0; }
@@ -66,11 +69,23 @@ T& Vector<T>::operator[](size_t index) {
 }
 
 template < typename T >
-void Vector<T>::push_back(T value)
-{
+void Vector<T>::reallocate(size_t newCapacity) {
+    T* newData = new T[newCapacity];
+
+    for (size_t i = 0; i < size_; ++i) {
+        newData[i] = arr[i];
+    }
+
+    delete[] arr;
+    arr = newData;
+    capacity = newCapacity;
+}
+
+template < typename T >
+void Vector<T>::push_back(T value){
     if (size_ == capacity) {
         T* temp = new T[capacity + 4];
-        for (size_t i = 0; i < capacity; i++) {
+        for (size_t i = 0; i < capacity; ++i) {
             temp[i] = arr[i];
         }
         delete[] arr;
@@ -90,9 +105,22 @@ void Vector<T>::pop_back() {
 }
 
 template < typename T >
+void Vector<T>::resize(size_t newSize) {
+    if (newSize > capacity) {
+        reallocate(newSize);
+    }
+
+    for (size_t i = size_; i < newSize; ++i) arr[i] = T();
+    
+    size_ = newSize;
+}
+
+
+
+template < typename T >
 void Vector<T>::erase(size_t index) {
     if (index < size_) {
-        for (size_t i = index; i < size_ - 1; i++) {
+        for (size_t i = index; i < size_ - 1; ++i) {
             arr[i] = arr[i + 1];
         }
         size_--;

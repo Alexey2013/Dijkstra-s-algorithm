@@ -1,25 +1,17 @@
 #include "Dijkstra.h"
 #include "dheap.h"
 
+
 int main() {
-    int n = 5;  // Количество вершин
-    int m = 7;  // Количество ребер
-    int d = 2;  // D для D-арной кучи
-    int start = 0;  // Стартовая вершина
+    std::string filename = "C:\\Users\\alexe\\Desktop\\Dijkstra-s-algorithm\\files";
+    int n = 5;
+    Vector<Vector<Pair<int, int>>> graph = parseAdjacencyList(filename, n);
 
-    // Векторы для хранения результатов
-    Vector<int> dist(n + 1);
-    Vector<int> up(n + 1);
-
-    // Выполним алгоритм Дейкстры
-    Dijkstra(dist, up, n, d, start);
-
-    // Выведем результаты
-    std::cout << "Кратчайшие расстояния от вершины " << start << ":\n";
-    for (int i = 0; i < n; ++i) {
-        std::cout << "Вершина " << i << ": расстояние = " << dist[i];
-        if (up[i] != -1) {
-            std::cout << ", предыдущая вершина = " << up[i];
+    for (int i = 0; i < graph.size(); ++i) {
+        std::cout << "Node " << i << ": ";
+        int n = graph[i].size();
+        for (int j = 0; j < n;j++) {
+            std::cout << "(" << graph[i][j].first << ", " << graph[i][j].second << ") ";
         }
         std::cout << std::endl;
     }

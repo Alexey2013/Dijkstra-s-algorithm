@@ -18,7 +18,7 @@ int DHeap::minChild(int i)
 
 int DHeap::lastChild(int i) const {
     int first = firstChild(i);
-    return (first == 0) ? 0 : Min(static_cast<int>(first + d - 1), static_cast<int>(v.size() - 1));
+    return (first == 0) ? 0 : min(static_cast<int>(first + d - 1), static_cast<int>(v.size() - 1));
 }
 
 int DHeap::firstChild(int i) const {

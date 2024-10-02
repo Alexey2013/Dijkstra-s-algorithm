@@ -17,12 +17,14 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEAS
 set(MP2_LIBRARY "${PROJECT_NAME}")
 set(MP2_TESTS   "tests_${PROJECT_NAME}")
 set(MP2_INCLUDE "${CMAKE_CURRENT_SOURCE_DIR}/include")
+set(MP2_FILES "files")
 
 # BUILD
 add_subdirectory(src)
 add_subdirectory(samples)
 add_subdirectory(gtest)
 add_subdirectory(tests)
+add_subdirectory(files)
 
 # REPORT
 message( STATUS "")
