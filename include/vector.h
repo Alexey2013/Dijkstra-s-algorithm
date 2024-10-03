@@ -11,7 +11,8 @@ public:
     Vector();
     Vector(const size_t n);
     Vector(const size_t n, const  T default_value);
-    Vector(const Vector& other);
+    Vector(const Vector<T>& other);
+    Vector<T>& operator=(const Vector<T>& other);
     ~Vector();
 
     void reallocate(size_t newCapacity);
@@ -29,7 +30,7 @@ public:
 
 
 template < typename T >
-Vector<T>::Vector() : capacity(4), size_(0) { arr = new T[4]; }
+Vector<T>::Vector() : capacity(4), size_(0) { arr = new T[capacity]; }
 
 template < typename T >
 Vector<T>::Vector(size_t n) : Vector(n, T()) {}
@@ -38,29 +39,43 @@ template < typename T >
 Vector<T>::Vector(size_t n, T default_value) {
     capacity = 2 * n;
     size_ = n;
-    arr = new T[size_];
+    arr = new T[capacity];
     for (size_t i = 0; i < size_; ++i) {
         arr[i] = default_value;
     }
 }
 
 template < typename T >
-Vector<T>::Vector(const Vector& other) {
+Vector<T>::Vector(const Vector<T>& other) {
     size_ = other.size_;
     capacity = other.capacity;
     arr = new T[capacity];
-
     for (size_t i = 0; i < size_; ++i) {
         arr[i] = other.arr[i];
     }
 }
 
-template < typename T >
-Vector<T>::~Vector()
-{
+
+
+
+template <typename T>
+Vector<T>& Vector<T>::operator=(const Vector<T>& other) {
+    if (this == &other) return *this;  
     delete[] arr;
-    capacity = 0;
-    size_ = 0;
+
+    size_ = other.size_;
+    capacity = other.capacity;
+    arr = new T[capacity];
+    for (size_t i = 0; i < size_; ++i) {
+        arr[i] = other.arr[i];
+    }
+
+    return *this;
+}
+
+template < typename T >
+Vector<T>::~Vector(){
+    delete[] arr;
 }
 
 template < typename T >
@@ -81,18 +96,12 @@ void Vector<T>::reallocate(size_t newCapacity) {
     capacity = newCapacity;
 }
 
-template < typename T >
-void Vector<T>::push_back(T value){
+template <typename T>
+void Vector<T>::push_back(T value) {
     if (size_ == capacity) {
-        T* temp = new T[capacity + 4];
-        for (size_t i = 0; i < capacity; ++i) {
-            temp[i] = arr[i];
-        }
-        delete[] arr;
-        capacity += 4;
-        arr = temp;
+        size_t newCapacity = capacity == 0 ? 1 : capacity * 2;
+        reallocate(newCapacity);
     }
-
     arr[size_] = value;
     size_++;
 }
@@ -104,14 +113,14 @@ void Vector<T>::pop_back() {
     }
 }
 
-template < typename T >
+template <typename T>
 void Vector<T>::resize(size_t newSize) {
     if (newSize > capacity) {
         reallocate(newSize);
     }
-
-    for (size_t i = size_; i < newSize; ++i) arr[i] = T();
-    
+    if (newSize > size_) {
+        for (size_t i = size_; i < newSize; ++i) arr[i] = T();
+    }
     size_ = newSize;
 }
 

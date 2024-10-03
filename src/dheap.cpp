@@ -3,7 +3,7 @@
 int DHeap::minChild(int i)
 {
     int first = firstChild(i);
-    if (first == 0) return i;
+    if (first == -1) return i;
 
     int last = lastChild(i);
     int minIdx = first;
@@ -18,12 +18,12 @@ int DHeap::minChild(int i)
 
 int DHeap::lastChild(int i) const {
     int first = firstChild(i);
-    return (first == 0) ? 0 : min(static_cast<int>(first + d - 1), static_cast<int>(v.size() - 1));
+    return (first == -1) ? -1 : min(static_cast<int>(first + d - 1), static_cast<int>(v.size() - 1));
 }
 
 int DHeap::firstChild(int i) const {
     int k = d * i + 1;
-    return (k < v.size()) ? k : 0;
+    return (k < v.size()) ? k : -1;
 }
 
 int DHeap::father(int i) const {
@@ -90,12 +90,16 @@ bool   DHeap::isEmpty() const {
     return v.empty();
 }
 
-void   DHeap::decreaseKey(int index, int newKey) {
-    if (index < 0 || index >= v.size() || newKey >= v[index].second)
-        throw std::runtime_error("Invalid operation");
+void DHeap::decreaseKey(int index, int newKey) {
+    //if (index < 0 || index >= v.size()) {
+    //    throw std::runtime_error("Index out of bounds");
+    //}
+
+    //if (newKey >= v[index].second) {
+    //    throw std::runtime_error("New key must be smaller than the current key");
+    //}
 
     v[index].second = newKey;
     siftUp(index);
 }
-
 

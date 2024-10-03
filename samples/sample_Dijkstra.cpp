@@ -1,20 +1,21 @@
-#include "Dijkstra.h"
+﻿#include "Dijkstra.h"
 #include "dheap.h"
 
 
 int main() {
-    std::string filename = "C:\\Users\\alexe\\Desktop\\Dijkstra-s-algorithm\\files";
-    int n = 5;
+    std::string filename = "C:\\Users\\alexe\\Desktop\\Dijkstra-s-algorithm\\files\\input.txt";
+
+    int n = 0;
     Vector<Vector<Pair<int, int>>> graph = parseAdjacencyList(filename, n);
+    int d = 2;
+    int start = 0;
+    Vector<int> dist(n);
+    Vector<int> up(n);
 
-    for (int i = 0; i < graph.size(); ++i) {
-        std::cout << "Node " << i << ": ";
-        int n = graph[i].size();
-        for (int j = 0; j < n;j++) {
-            std::cout << "(" << graph[i][j].first << ", " << graph[i][j].second << ") ";
-        }
-        std::cout << std::endl;
+    Dijkstra(dist, up,graph,d, n, start);
+
+    for (int i = 0; i < n; ++i) {
+        std::cout << "Vertex " << i << ": Distance = " << dist[i] << ", Predecessor = " << up[i] << std::endl;
     }
-
     return 0;
 }
