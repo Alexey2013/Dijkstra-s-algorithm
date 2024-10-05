@@ -22,7 +22,6 @@ public:
     void  insert(int key, int value);
     Pair<int, int>  extractMin();
     bool  isEmpty() const;
-    void decreaseKey(int index, int newKey);
 };
 
 #endif 

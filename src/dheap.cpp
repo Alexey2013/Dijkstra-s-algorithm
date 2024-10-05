@@ -89,17 +89,3 @@ Pair<int, int>  DHeap::extractMin() {
 bool   DHeap::isEmpty() const {
     return v.empty();
 }
-
-void DHeap::decreaseKey(int index, int newKey) {
-    //if (index < 0 || index >= v.size()) {
-    //    throw std::runtime_error("Index out of bounds");
-    //}
-
-    //if (newKey >= v[index].second) {
-    //    throw std::runtime_error("New key must be smaller than the current key");
-    //}
-
-    v[index].second = newKey;
-    siftUp(index);
-}
-

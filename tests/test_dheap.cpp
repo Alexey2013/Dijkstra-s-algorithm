@@ -6,6 +6,10 @@ TEST(DHeap, can_create_dheap_with_d)
 	ASSERT_NO_THROW(DHeap heap(3));
 }
 
+TEST(DHeap, throws_when_creating_with_zero_d) {
+	ASSERT_ANY_THROW(DHeap heap(0));
+}
+
 TEST(DHeap, throws_when_d_is_negative)
 {
 	ASSERT_ANY_THROW(DHeap heap(-1));
@@ -114,8 +118,16 @@ TEST(DHeap, can_insert_and_extract_negative_numbers) {
 	EXPECT_EQ(heap.extractMin().first, 1);
 }
  
-//TEST(DHeap, throws_when_inserting_with_duplicate_keys) {
-//	DHeap heap(2);
-//	heap.insert(1, 1);
-//	ASSERT_ANY_THROW(heap.insert(2, 1));
-//}
+
+
+
+TEST(DHeap, throws_when_extracting_more_than_inserted) {
+    DHeap heap(2);
+    for (int i = 0; i < 10; ++i) {
+        heap.insert(i, i);
+    }
+    for (int i = 0; i < 10; ++i) {
+        heap.extractMin();
+    }
+    ASSERT_ANY_THROW(heap.extractMin());
+}

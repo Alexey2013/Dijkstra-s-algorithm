@@ -21,7 +21,6 @@ public:
     void push_back(const T value);
     void pop_back();
     void resize(const  size_t size);
-    void erase(const size_t index);
     T& back() const;
     void clear() { size_ = 0; }
     bool empty() const { return size_ == 0; }
@@ -54,9 +53,6 @@ Vector<T>::Vector(const Vector<T>& other) {
         arr[i] = other.arr[i];
     }
 }
-
-
-
 
 template <typename T>
 Vector<T>& Vector<T>::operator=(const Vector<T>& other) {
@@ -124,17 +120,6 @@ void Vector<T>::resize(size_t newSize) {
     size_ = newSize;
 }
 
-
-
-template < typename T >
-void Vector<T>::erase(size_t index) {
-    if (index < size_) {
-        for (size_t i = index; i < size_ - 1; ++i) {
-            arr[i] = arr[i + 1];
-        }
-        size_--;
-    }
-}
 
 template < typename T >
 T& Vector<T>::back() const {

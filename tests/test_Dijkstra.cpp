@@ -97,12 +97,11 @@ TEST(DijkstraTest, negative_weight_graph_test) {
     Vector<int> up(n + 1);
     Vector<Vector<Pair<int, int>>> graph(n + 1);
 
-    graph[0].push_back(Pair<int, int>(1, -2)); // Negative weight
+    graph[0].push_back(Pair<int, int>(1, -2));
     graph[1].push_back(Pair<int, int>(2, 4));
 
     Dijkstra(dist, up, graph, n, d, start);
 
-    // This test should fail as Dijkstra's algorithm does not support negative weights.
     EXPECT_EQ(dist[0], 0);
     EXPECT_EQ(dist[1], -2);
     EXPECT_EQ(dist[2], -2 + 4);
