@@ -89,3 +89,12 @@ Pair<int, int>  DHeap::extractMin() {
 bool   DHeap::isEmpty() const {
     return v.empty();
 }
+
+static DHeap makeHeap(Vector<Pair<int,int>>& v, Vector<int>& index, int d) {
+    DHeap dh(d);
+    index.resize(v.size());
+    for (int i = 0; i < v.size(); ++i) {
+        dh.insert(v[i].first, v[i].second); 
+    }
+    return dh;
+}

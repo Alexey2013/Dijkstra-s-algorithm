@@ -13,14 +13,7 @@ public:
 public:
     Pair();
     Pair(const T1 f, const T2 s);
-    Pair(const Pair& p);
-public:
-    bool operator<(const Pair<T1, T2>& other) const {
-        return first < other.first || (first == other.first && second < other.second);
-    }
-    bool operator>(const Pair<T1, T2>& other) const {
-        return other < *this;
-    }
+
 };
 
 template<typename T1, typename T2>
@@ -29,7 +22,5 @@ Pair<T1, T2>::Pair() : first(T1()), second(T2()) {}
 template<typename T1, typename T2>
 Pair<T1, T2>::Pair(const T1 f, const T2 s) : first(f), second(s) {}
 
-template<typename T1, typename T2>
-Pair<T1, T2>::Pair(const Pair& p) : first(p.first), second(p.second) {}
 
 #endif 
