@@ -112,4 +112,23 @@ void Dijkstra(Vector<int>& dist, Vector<int>& up, Vector<Vector<Pair<int, int>>>
     }
 
 }
+
+
+
+void writeResultsToFile(const Vector<int>& dist, const Vector<int>& up, const std::string& filename) {
+    std::ofstream outFile(filename);
+
+    outFile << "Distances:" << std::endl;
+    for (size_t i = 0; i < dist.size(); ++i) {
+        outFile << "dist[" << i << "] = " << dist[i] << std::endl;
+    }
+
+    outFile << "Paths (up):" << std::endl;
+    for (size_t i = 0; i < up.size(); ++i) {
+        outFile << "up[" << i << "] = " << up[i] << std::endl;
+    }
+
+    outFile.close();
+}
+
 #endif 

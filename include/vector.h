@@ -17,7 +17,7 @@ public:
 
     void reallocate(size_t newCapacity);
 public:
-    T& operator[](const  size_t index);
+    T& operator[](const  size_t index) const;
     void push_back(const T value);
     void pop_back();
     void resize(const  size_t size);
@@ -75,7 +75,7 @@ Vector<T>::~Vector(){
 }
 
 template < typename T >
-T& Vector<T>::operator[](size_t index) {
+T& Vector<T>::operator[](size_t index) const {
     return arr[index];
 }
 
