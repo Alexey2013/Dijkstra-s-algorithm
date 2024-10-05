@@ -13,7 +13,6 @@ public:
 public:
     Pair();
     Pair(const T1 f, const T2 s);
-
 };
 
 template<typename T1, typename T2>
