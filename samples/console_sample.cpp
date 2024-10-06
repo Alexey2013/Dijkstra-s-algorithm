@@ -4,21 +4,21 @@
 
 
 int main() {
-
     int N, M, s, q, r;
-    std::cout << "N = ";
+
+    std::cout << "N: ";
     std::cin >> N;
 
-    std::cout << "M = ";
+    std::cout << "M: ";
     std::cin >> M;
 
-    std::cout << "s = ";
+    std::cout << "s:";
     std::cin >> s;
 
-    std::cout << "q = ";
+    std::cout << "q:";
     std::cin >> q;
 
-    std::cout << "r = ";
+    std::cout << "r:";
     std::cin >> r;
 
 
