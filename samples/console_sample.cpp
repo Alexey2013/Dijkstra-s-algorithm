@@ -6,10 +6,10 @@
 int main() {
     int N, M, s, q, r;
 
-    std::cout << "N: ";
+    std::cout << "N:";
     std::cin >> N;
 
-    std::cout << "M: ";
+    std::cout << "M:";
     std::cin >> M;
 
     std::cout << "s:";

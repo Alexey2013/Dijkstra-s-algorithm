@@ -21,9 +21,8 @@ Vector<Vector<Pair<int, int>>> generate_graph(int n, int m, int q = 1, int r = 1
 
 
 void Dijkstra(Vector<int>& dist, Vector<int>& up, Vector<Vector<Pair<int, int>>> graph, int n, int d, int start) {
-    Vector<int> key(n + 1, INT_MAX);
-    Vector<int> index(n + 1);
-    Vector<int> name(n + 1);
+    Vector<int> index(n);
+    Vector<int> name(n);
 
     for (int i = 0; i < n; ++i) {
         up[i] = -1;
@@ -32,7 +31,6 @@ void Dijkstra(Vector<int>& dist, Vector<int>& up, Vector<Vector<Pair<int, int>>>
         name[i] = i;
     }
 
-    key[start] = 0;
     dist[start] = 0;
     up[start] = start;
 
