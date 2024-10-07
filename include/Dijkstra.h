@@ -5,12 +5,13 @@
 #include "dheap.h"
 
 
-vector<vector<pair<int, int>>> generate_graph(int n, int m, int q = 1, int r = 11) {
+vector<vector<pair<int, int>>> generate_graph(int n, int m, int q , int r ) {
     int max_edges = n * (n - 1) / 2;
 
     m = min(max_edges, m);
 
     vector<vector<pair<int, int>>> adj_list(n);
+    srand(static_cast<unsigned>(time(nullptr)));
 
     int edge_count = 0;
 
@@ -26,8 +27,8 @@ vector<vector<pair<int, int>>> generate_graph(int n, int m, int q = 1, int r = 1
 }
 
 void Dijkstra(vector<int>& dist, vector<int>& up, vector<vector<pair<int, int>>> graph, int n, int d, int start) {
-    vector<int> index(n+1);
-    vector<int> name(n+1);
+    vector<int> index(n);
+    vector<int> name(n);
 
     for (int i = 0; i < n; ++i) {
         up[i] = -1;
@@ -49,10 +50,10 @@ void Dijkstra(vector<int>& dist, vector<int>& up, vector<vector<pair<int, int>>>
 
         if (currentDist > dist[i]) continue;
 
-        vector<pair<int, int>> current = graph[i];
-        for (int k = 0; k < current.size(); k++) {
-            int j = current[k].first;
-            int weight = current[k].second;
+        vector<pair<int, int>> edge = graph[i];
+        for (int k = 0; k < edge.size(); k++) {
+            int j = edge[k].first;
+            int weight = edge[k].second;
 
             if (dist[i] + weight < dist[j]) {
                 dist[j] = dist[i] + weight;

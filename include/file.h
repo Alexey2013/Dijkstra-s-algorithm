@@ -57,11 +57,11 @@ vector<vector<pair<int, int>>> parseAdjacencyList(const std::string& filename, i
         graph.push_back(current);
     }
 
-    ////output of parsing result
+    ////output of parsing result:
     //for (int i = 0; i < n; i++) {
     //    std::cout << i << ":" << std::endl;
     //    int m = graph[i].size();
-    //    for (int j = 0; j < m; j++) {
+    //    for (int j = 0; j < m; ++j) {
     //        std::cout << graph[i][j].first << graph[i][j].second << std::endl;
     //    }
     //    std::cout << std::endl;
