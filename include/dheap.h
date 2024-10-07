@@ -1,28 +1,26 @@
 #ifndef _DHEAP_H
 #define _DHEAP_H
 #include "vector.h"
-#include <vector>
 #include "pair.h"
 
 class DHeap {
 private:
     int d;
-    Vector<Pair<int, int>> v;
+    vector<pair<int, int>> v;
+
 private:
-    int minChild(int i);
-    int lastChild(int i) const;
-    int firstChild(int i) const;
-    int father(int i) const;
-    void siftDown(int i);
-    void siftUp(int i);
+    size_t minChild(size_t i);        
+    size_t lastChild(size_t i) const;  
+    size_t firstChild(size_t i) const; 
+    size_t father(size_t i) const;   
+    void siftDown(size_t i);
+    void siftUp(size_t i);
+
 public:
     DHeap(int d);
-    DHeap(const Vector<Pair<int, int>>& elements);
-public:
-    void  insert(int key, int value);
-    Pair<int, int>  extractMin();
-    bool  isEmpty() const;
 
+    void insert(int key, int value);
+    pair<int, int> extractMin();
+    bool isEmpty() const;
 };
-
 #endif 

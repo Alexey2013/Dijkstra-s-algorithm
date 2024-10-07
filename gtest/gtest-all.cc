@@ -2951,14 +2951,14 @@ std::string CodePointToUtf8(UInt32 code_point) {
 
 // Determines if the arguments constitute UTF-16 surrogate pair
 // and thus should be combined into a single Unicode code point
-// using CreateCodePointFromUtf16SurrogatePair.
-inline bool IsUtf16SurrogatePair(wchar_t first, wchar_t second) {
+// using CreateCodePointFromUtf16Surrogatepair.
+inline bool IsUtf16Surrogatepair(wchar_t first, wchar_t second) {
   return sizeof(wchar_t) == 2 &&
       (first & 0xFC00) == 0xD800 && (second & 0xFC00) == 0xDC00;
 }
 
 // Creates a Unicode code point from UTF16 surrogate pair.
-inline UInt32 CreateCodePointFromUtf16SurrogatePair(wchar_t first,
+inline UInt32 CreateCodePointFromUtf16Surrogatepair(wchar_t first,
                                                     wchar_t second) {
   const UInt32 mask = (1 << 10) - 1;
   return (sizeof(wchar_t) == 2) ?
@@ -2991,8 +2991,8 @@ std::string WideStringToUtf8(const wchar_t* str, int num_chars) {
 
     if (str[i] == L'\0') {
       break;
-    } else if (i + 1 < num_chars && IsUtf16SurrogatePair(str[i], str[i + 1])) {
-      unicode_code_point = CreateCodePointFromUtf16SurrogatePair(str[i],
+    } else if (i + 1 < num_chars && IsUtf16Surrogatepair(str[i], str[i + 1])) {
+      unicode_code_point = CreateCodePointFromUtf16Surrogatepair(str[i],
                                                                  str[i + 1]);
       i++;
     } else {
@@ -3266,18 +3266,18 @@ static const char* const kReservedTestCaseAttributes[] = {
 };
 
 template <int kSize>
-std::vector<std::string> ArrayAsVector(const char* const (&array)[kSize]) {
+std::vector<std::string> ArrayAsvector(const char* const (&array)[kSize]) {
   return std::vector<std::string>(array, array + kSize);
 }
 
 static std::vector<std::string> GetReservedAttributesForElement(
     const std::string& xml_element) {
   if (xml_element == "testsuites") {
-    return ArrayAsVector(kReservedTestSuitesAttributes);
+    return ArrayAsvector(kReservedTestSuitesAttributes);
   } else if (xml_element == "testsuite") {
-    return ArrayAsVector(kReservedTestSuiteAttributes);
+    return ArrayAsvector(kReservedTestSuiteAttributes);
   } else if (xml_element == "testcase") {
-    return ArrayAsVector(kReservedTestCaseAttributes);
+    return ArrayAsvector(kReservedTestCaseAttributes);
   } else {
     GTEST_CHECK_(false) << "Unrecognized xml_element provided: " << xml_element;
   }
@@ -4424,7 +4424,7 @@ void TestEventRepeater::Append(TestEventListener *listener) {
   listeners_.push_back(listener);
 }
 
-// TODO(vladl@google.com): Factor the search functionality into Vector::Find.
+// TODO(vladl@google.com): Factor the search functionality into vector::Find.
 TestEventListener* TestEventRepeater::Release(TestEventListener *listener) {
   for (size_t i = 0; i < listeners_.size(); ++i) {
     if (listeners_[i] == listener) {

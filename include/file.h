@@ -22,9 +22,9 @@ std::string get_path() {
 }
 
 
-Vector<Vector<Pair<int, int>>> parseAdjacencyList(const std::string& filename, int &n) {
+vector<vector<pair<int, int>>> parseAdjacencyList(const std::string& filename, int &n) {
     std::ifstream file(filename);
-    Vector<Vector<Pair<int, int>>> graph;
+    vector<vector<pair<int, int>>> graph;
 
     std::string line;
     while (std::getline(file, line)) {
@@ -32,7 +32,7 @@ Vector<Vector<Pair<int, int>>> parseAdjacencyList(const std::string& filename, i
         std::string index;
         std::getline(iss, index, ':');
 
-        Vector<Pair<int, int>> current;
+        vector<pair<int, int>> current;
         std::string pairStr;
 
         while (std::getline(iss, pairStr, ')')) {
@@ -57,22 +57,22 @@ Vector<Vector<Pair<int, int>>> parseAdjacencyList(const std::string& filename, i
         graph.push_back(current);
     }
 
-
-    for (int i = 0; i < n; i++) {
-        std::cout << i << ":" << std::endl;
-        int m = graph[i].size();
-        for (int j = 0; j < m; j++) {
-            std::cout << graph[i][j].first << graph[i][j].second << std::endl;
-        }
-        std::cout << std::endl;
-    }
+    ////output of parsing result
+    //for (int i = 0; i < n; i++) {
+    //    std::cout << i << ":" << std::endl;
+    //    int m = graph[i].size();
+    //    for (int j = 0; j < m; j++) {
+    //        std::cout << graph[i][j].first << graph[i][j].second << std::endl;
+    //    }
+    //    std::cout << std::endl;
+    //}
 
     file.close();
     return graph;
 }
 
 
-void writeResultsToFile(const Vector<int>& dist, const Vector<int>& up, const std::string& filename) {
+void writeResultsToFile(const vector<int>& dist, const vector<int>& up, const std::string& filename) {
     std::ofstream outFile(filename);
 
     outFile << "Distances:" << std::endl;
