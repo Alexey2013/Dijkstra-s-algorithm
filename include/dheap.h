@@ -1,6 +1,7 @@
 #ifndef _DHEAP_H
 #define _DHEAP_H
 #include "vector.h"
+#include <vector>
 #include "pair.h"
 
 class DHeap {
@@ -18,7 +19,6 @@ public:
     DHeap(int d);
     DHeap(const Vector<Pair<int, int>>& elements);
 public:
-    void make_heap();
     void  insert(int key, int value);
     Pair<int, int>  extractMin();
     bool  isEmpty() const;

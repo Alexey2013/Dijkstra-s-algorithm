@@ -4,62 +4,42 @@
 
 
 int main() {
-    int N, M, s, q, r;
-
-    std::cout << "N:";
-    std::cin >> N;
-
-    std::cout << "M:";
-    std::cin >> M;
-
-    std::cout << "s:";
-    std::cin >> s;
-
-    std::cout << "q:";
-    std::cin >> q;
-
-    std::cout << "r:";
-    std::cin >> r;
-
+    int N = 100'000;
+    int M = 100'000'000;
+    int    s = 0;
+    int  q = 1;
+    int r = 1'000'000;
 
     Vector<Vector<Pair<int, int>>> adj = generate_graph(N, M, q, r);
 
-    {
-        std::cout << "\n2-heap\n";
+    
+    std::cout << "\n2-heap\n";
 
-        Vector<int> dist;
-        Vector<int> up;
+    Vector<int> dist(N);
+    Vector<int> up(N);
 
+    double start = 0.0;
+    double end = 0.0;
 
+    start = clock();
 
-        auto start_time = std::chrono::high_resolution_clock::now();
+    Dijkstra(dist, up, adj, N, 2, s);
 
-        Dijkstra(dist, up, adj, N, 2, s);
+    end = clock();
 
-        auto end_time = std::chrono::high_resolution_clock::now();
+    std::cout << end - start << "\n";
+    
 
-        std::chrono::duration<double, std::milli> elapsed_time = end_time - start_time;
-
-        std::cout << "Spent time: " << elapsed_time.count() << " ms " << std::endl;
-    }
-
-    {
-        std::cout << "\n3-heap\n";
-
-        Vector<int> dist;
-        Vector<int> up;
+    
+    std::cout << "\n3-heap\n";
 
 
-        auto start_time = std::chrono::high_resolution_clock::now();
+    start = clock();
 
-        Dijkstra(dist, up, adj, N, 3, s);
+    Dijkstra(dist, up, adj, N, 3, s);
 
-        auto end_time = std::chrono::high_resolution_clock::now();
+    end = clock();
 
-
-        std::chrono::duration<double, std::milli> elapsed_time = end_time - start_time;
-
-        std::cout << "Spent time: " << elapsed_time.count() << " ms " << std::endl;
-    }
-
+    std::cout << end - start << "\n";
+    
 }

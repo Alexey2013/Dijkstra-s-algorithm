@@ -60,15 +60,15 @@ DHeap::DHeap(int d) : d(d) {
     if (d < 2) throw std::runtime_error("Degree of heap must be at least 2.");
 }
 
-DHeap::DHeap(const Vector<Pair<int, int>>& elements) : v(elements) {
-    make_heap();
-}
+//DHeap::DHeap(const Vector<Pair<int, int>>& elements) : v(elements) {
+//    make_heap();
+//}
 
-void  DHeap::make_heap() {
-    for (int i = (v.size() / 2) - 1; i >= 0; --i) {
-        siftDown(i);
-    }
-}
+//void  DHeap::make_heap() {
+//    for (int i = (v.size() / 2) - 1; i >= 0; --i) {
+//        siftDown(i);
+//    }
+//}
 
 void  DHeap::insert(int key, int value) {
     v.push_back({ key, value });
@@ -88,13 +88,4 @@ Pair<int, int>  DHeap::extractMin() {
 
 bool   DHeap::isEmpty() const {
     return v.empty();
-}
-
-static DHeap makeHeap(Vector<Pair<int,int>>& v, Vector<int>& index, int d) {
-    DHeap dh(d);
-    index.resize(v.size());
-    for (int i = 0; i < v.size(); ++i) {
-        dh.insert(v[i].first, v[i].second); 
-    }
-    return dh;
 }

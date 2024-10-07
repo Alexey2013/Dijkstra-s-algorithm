@@ -4,25 +4,26 @@
 #include <fstream>
 #include "dheap.h"
 
-Vector<Vector<Pair<int, int>>> generate_graph(int n, int m, int q = 1, int r = 11) {
-    int maxEdges = n * (n - 1) / 2;
-    m = min(maxEdges, m);
-    Vector<Vector<Pair<int, int>>> graph(n);
 
+
+Vector<Vector<Pair<int, int>>> generate_graph(int n, int m, int q = 1, int r = 11) {
+    int k = n * (n - 1) / 2;
+    m = min(k, m);
+    Vector<Vector<Pair<int, int>>> a(n);
     int cnt = 0;
     for (int i = 0; i < n; ++i) {
-        for (int j = i + 1; j < n && graph[i].size() < m; ++j) {
-            int weight = rand() % (r - q) + q;
-            graph[i].push_back(Pair<int, int>(j, weight));
+        for (int j = i + 1; j < n && cnt < m; ++j, ++cnt) {
+            int l = rand() % (r - q) + q;
+            a[i].push_back(Pair<int, int>(j, l));
+            //a[j].pushBack(Pair<int, int>(i, l));
         }
     }
-    return graph;
+    return a;
 }
 
-
 void Dijkstra(Vector<int>& dist, Vector<int>& up, Vector<Vector<Pair<int, int>>> graph, int n, int d, int start) {
-    Vector<int> index(n);
-    Vector<int> name(n);
+    Vector<int> index(n+1);
+    Vector<int> name(n+1);
 
     for (int i = 0; i < n; ++i) {
         up[i] = -1;
