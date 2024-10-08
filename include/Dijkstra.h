@@ -27,6 +27,7 @@ vector<vector<pair<int, int>>> generate_graph(int n, int m, int q , int r ) {
 }
 
 void Dijkstra(vector<int>& dist, vector<int>& up, vector<vector<pair<int, int>>> graph, int n, int d, int start) {
+    vector<bool> processed(n, false);
     vector<int> index(n);
     vector<int> name(n);
 
@@ -41,22 +42,22 @@ void Dijkstra(vector<int>& dist, vector<int>& up, vector<vector<pair<int, int>>>
     up[start] = start;
 
     DHeap dHeap(d);
-    dHeap.insert(start, 0);
+    dHeap.insert(start, dist[start]);
 
     while (!dHeap.isEmpty()) {
         pair<int, int> minpair = dHeap.extractMin();
         int i = minpair.first;
-        int currentDist = minpair.second;
-
-        if (currentDist > dist[i]) continue;
+        int currentDIst = minpair.second;
+        if (processed[i]) continue; 
+        processed[i] = true;
 
         vector<pair<int, int>> edge = graph[i];
         for (int k = 0; k < edge.size(); k++) {
             int j = edge[k].first;
-            int weight = edge[k].second;
+            int newDist = edge[k].second+ currentDIst;
 
-            if (dist[i] + weight < dist[j]) {
-                dist[j] = dist[i] + weight;
+            if (newDist < dist[j]) {
+                dist[j] = newDist;
                 up[j] = i;
                 dHeap.insert(j, dist[j]);
             }

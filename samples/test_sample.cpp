@@ -18,15 +18,15 @@ int main() {
     double start = 0.0;
     double end = 0.0;
 
-    std::cout << "\n2-Heap Dijkstra\n";
-    start = clock();
-    Dijkstra(dist, up, adj, N, 2, s);  
-    end = clock();
-    std::cout << "Execution time: " << (end - start) / CLOCKS_PER_SEC << " seconds\n";
-
     std::cout << "\n3-Heap Dijkstra\n";
     start = clock();
     Dijkstra(dist, up, adj, N, 3, s);  
+    end = clock();
+    std::cout << "Execution time: " << (end - start) / CLOCKS_PER_SEC << " seconds\n";
+
+    std::cout << "\n15-Heap Dijkstra\n";
+    start = clock();
+    Dijkstra(dist, up, adj, N, 15, s);  
     end = clock();
     std::cout << "Execution time: " << (end - start) / CLOCKS_PER_SEC << " seconds\n";
 
