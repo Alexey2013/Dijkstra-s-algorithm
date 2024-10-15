@@ -1,34 +1,33 @@
-﻿#include <chrono>
+﻿#include "dheap.h"
 #include "Dijkstra.h"
-#include "dheap.h"
+#include "file.h"
 
 
 int main() {
-    const int N = 100'000;      
-    const int M = 100'000'000;   
-    const int s = 0;  
-    const int q = 1;           
-    const int r = 1'000'000;     
+    std::string file_time = get_path();
+    std::ofstream output_file(file_time);
 
-    vector<vector<pair<int, int>>> adj = generate_graph(N, M, q, r);
+    const int fixed_n = 10'000; 
+    const int step = 1;          
+    const int max_r = 200;       
+    const int q = 1;
 
-    vector<int> dist(N);
-    vector<int> up(N);
+    const int m = 1000 * fixed_n; 
 
-    double start = 0.0;
-    double end = 0.0;
+    for (int r = 1; r <= max_r; ++r) {
+        vector<vector<pair<int, int>>> adj = generate_graph(fixed_n, m, q, r);
 
-    std::cout << "\n3-Heap Dijkstra\n";
-    start = clock();
-    Dijkstra(dist, up, adj, N, 3, s);  
-    end = clock();
-    std::cout << "Execution time: " << (end - start) / CLOCKS_PER_SEC << " seconds\n";
+        vector<int> dist(fixed_n);
+        vector<int> up(fixed_n);
 
-    std::cout << "\n15-Heap Dijkstra\n";
-    start = clock();
-    Dijkstra(dist, up, adj, N, 15, s);  
-    end = clock();
-    std::cout << "Execution time: " << (end - start) / CLOCKS_PER_SEC << " seconds\n";
+        double start = 0.0;
+        double end = 0.0;
 
+        std::cout << "\n3-Heap Dijkstra\n";
+        output_file << r << ":" << Dijkstra(dist, up, adj, fixed_n, 3, 0) << " ";
+
+        std::cout << "\n15-Heap Dijkstra\n";
+        output_file << Dijkstra(dist, up, adj, fixed_n, 15, 0) << " \n";
+    }
     return 0;
 }
