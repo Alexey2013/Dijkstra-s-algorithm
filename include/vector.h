@@ -2,128 +2,132 @@
 #define  _VECTOR_H
 #include <iostream>
 
-template < typename T >
+template <typename T>
 class vector {
 private:
-    T* v;
-    size_t capacity;
+    T* v_;
+    size_t capacity_;
     size_t size_;
+
 public:
     vector();
-    vector(const size_t n);
-    vector(const size_t n, const  T default_value);
+    explicit vector(const size_t n);
+    vector(const size_t n, const T& default_value);
     vector(const vector<T>& other);
     vector<T>& operator=(const vector<T>& other);
     ~vector();
 
-    void reallocate(size_t newCapacity);
+    void reallocate(size_t new_capacity);
+
 public:
-    T& operator[](const  size_t index) const;
-    void push_back(const T value);
+    T& operator[](const size_t index) const;
+    void push_back(const T& value);
     void pop_back();
     T& back() const;
-    bool isEmpty() const { return size_ == 0; }
+    bool IsEmpty() const { return size_ == 0; }
     size_t size() const { return size_; }
 };
 
+template <typename T>
+vector<T>::vector() : capacity_(4), size_(0) {
+    v_ = new T[capacity_];
+}
 
-template < typename T >
-vector<T>::vector() : capacity(4), size_(0) { v = new T[capacity]; }
-
-template < typename T >
+template <typename T>
 vector<T>::vector(size_t n) : vector(n, T()) {}
 
-template < typename T >
-vector<T>::vector(size_t n, T default_value) {
-    capacity = 2 * n;
+template <typename T>
+vector<T>::vector(size_t n, const T& default_value) {
+    capacity_ = 2 * n;
     size_ = n;
-    v = new T[capacity];
+    v_ = new T[capacity_];
     for (size_t i = 0; i < size_; ++i) {
-        v[i] = default_value;
+        v_[i] = default_value;
     }
 }
 
 template <typename T>
 vector<T>::vector(const vector<T>& other) {
     size_ = other.size_;
-    capacity = other.capacity;
+    capacity_ = other.capacity_;
 
-    if (capacity > 0) {
-        v = new T[capacity];
+    if (capacity_ > 0) {
+        v_ = new T[capacity_];
     }
     else {
-        v = nullptr;
+        v_ = nullptr;
     }
 
     for (size_t i = 0; i < size_; ++i) {
-        v[i] = other.v[i];
+        v_[i] = other.v_[i];
     }
 }
 
 template <typename T>
 vector<T>& vector<T>::operator=(const vector<T>& other) {
-    if (this == &other) return *this;  
-    delete[] v;
+    if (this == &other) return *this;
+    delete[] v_;
 
     size_ = other.size_;
-    capacity = other.capacity;
-    v = new T[capacity];
+    capacity_ = other.capacity_;
+    v_ = new T[capacity_];
     for (size_t i = 0; i < size_; ++i) {
-        v[i] = other.v[i];
+        v_[i] = other.v_[i];
     }
 
     return *this;
 }
 
-template < typename T >
-vector<T>::~vector(){
-    delete[] v;
-}
-
-template < typename T >
-T& vector<T>::operator[](size_t index) const {
-    return v[index];
+template <typename T>
+vector<T>::~vector() {
+    delete[] v_;
 }
 
 template <typename T>
-void vector<T>::reallocate(size_t newCapacity) {
-    if (newCapacity < size_) {
-        throw std::runtime_error("New capacity must be greater than or equal to the current size");
+T& vector<T>::operator[](size_t index) const {
+    return v_[index];
+}
+
+template <typename T>
+void vector<T>::reallocate(size_t new_capacity) {
+    if (new_capacity < size_) {
+        throw std::runtime_error("New capacity must be greater than or equal to the current size.");
     }
 
-    T* newData = new T[newCapacity];
+    T* new_data = new T[new_capacity];
 
     for (size_t i = 0; i < size_; ++i) {
-        newData[i] = std::move(v[i]); 
+        new_data[i] = std::move(v_[i]);
     }
 
-    delete[] v;
+    delete[] v_;
 
-    v = newData;
-    capacity = newCapacity;
+    v_ = new_data;
+    capacity_ = new_capacity;
 }
+
 template <typename T>
-void vector<T>::push_back(T value) {
-    if (size_ == capacity) {
-        size_t newCapacity = capacity == 0 ? 1 : capacity * 2;
-        reallocate(newCapacity);
+void vector<T>::push_back(const T& value) {
+    if (size_ == capacity_) {
+        size_t new_capacity = capacity_ == 0 ? 1 : capacity_ * 2;
+        reallocate(new_capacity);
     }
-    v[size_] = value;
+    v_[size_] = value;
     size_++;
 }
 
-template < typename T >
+template <typename T>
 void vector<T>::pop_back() {
     if (size_ > 0) {
         size_--;
     }
 }
 
-template < typename T >
+template <typename T>
 T& vector<T>::back() const {
-    if (size_ > 0) return v[size_ - 1];
+    if (size_ > 0) return v_[size_ - 1];
 
-    throw std::out_of_range("vector is empty");
+    throw std::out_of_range("vector is empty.");
 }
 
 #endif 

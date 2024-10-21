@@ -8,8 +8,8 @@
 #include "dheap.h"
 
 
-vector<vector<pair<int, int>>> generate_graph(int n, int m, int q, int r) {
-    m = min(n * (n - 1) / 2, m);  
+vector<vector<pair<int, int>>> generateGraph(int n, int m, int q, int r) {
+    m = min(n * (n - 1) / 2, m);
     vector<vector<pair<int, int>>> adj_list(n);
 
     std::random_device rd;
@@ -31,14 +31,14 @@ vector<vector<pair<int, int>>> generate_graph(int n, int m, int q, int r) {
 
             was[i][j] = was[j][i] = true;
 
-            ++edge_count;  
+            ++edge_count;
         }
     }
 
     return adj_list;
 }
 
-double Dijkstra(vector<int>& dist, vector<int>& up, vector<vector<pair<int, int>>> graph, int n, int d, int start) {
+double dijkstra(vector<int>& dist, vector<int>& up, vector<vector<pair<int, int>>> graph, int n, int d, int start) {
     vector<bool> processed(n, false);
     vector<int> index(n);
     vector<int> name(n);
@@ -53,33 +53,36 @@ double Dijkstra(vector<int>& dist, vector<int>& up, vector<vector<pair<int, int>
     dist[start] = 0;
     up[start] = start;
     DHeap dHeap(d);
-    dHeap.insert(start, dist[start]);
+    dHeap.Insert(start, dist[start]);
 
-    auto begin = std::chrono::high_resolution_clock::now();
-    while (!dHeap.isEmpty()) {
-        pair<int, int> minpair = dHeap.extractMin();
-        int i = minpair.first;
-        int currentDIst = minpair.second;
-        if (processed[i]) continue;
+    auto begin = std::chrono::high_resolution_clock::now();  
+
+    while (!dHeap.IsEmpty()) {
+        pair<int, int> minPair = dHeap.ExtractMin();
+        int i = minPair.first;
+        int currentDist = minPair.second;
+
+        if (processed[i]) continue; 
         processed[i] = true;
 
         vector<pair<int, int>> edge = graph[i];
         for (int k = 0; k < edge.size(); k++) {
             int j = edge[k].first;
-            int newDist = edge[k].second + currentDIst;
+            int newDist = edge[k].second + currentDist;
 
             if (newDist < dist[j]) {
                 dist[j] = newDist;
                 up[j] = i;
-                dHeap.insert(j, dist[j]);
+                dHeap.Insert(j, dist[j]);
             }
         }
     }
 
     auto end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> execution_time = end - begin;
-    std::cout << "Execution time: " << execution_time.count() << " seconds\n";
+    std::chrono::duration<double> executionTime = end - begin;
+    std::cout << "Execution time: " << executionTime.count() << " seconds\n";
 
-    return execution_time.count();
+    return executionTime.count();
 }
+
 #endif 

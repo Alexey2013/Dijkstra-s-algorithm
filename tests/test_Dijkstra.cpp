@@ -10,7 +10,7 @@ TEST(DijkstraTest, empty_graph_test) {
     vector<int> up(n + 1);
     vector<vector<pair<int, int>>> graph(n + 1);
 
-    Dijkstra(dist, up, graph, n, d, start);
+    dijkstra(dist, up, graph, n, d, start);
 
     EXPECT_EQ(dist.size(), 1);
     EXPECT_EQ(dist[0], 0); 
@@ -25,7 +25,7 @@ TEST(DijkstraTest, one_node_graph_test) {
     vector<int> up(n + 1);
     vector<vector<pair<int, int>>> graph(n + 1);
 
-    Dijkstra(dist, up, graph, n, d, start);
+    dijkstra(dist, up, graph, n, d, start);
 
     EXPECT_EQ(dist[0], 0);
     EXPECT_EQ(up[0], 0);
@@ -52,7 +52,7 @@ TEST(DijkstraTest, SimpleGraph) {
     graph[3].push_back(pair<int, int>(1, 11));
 
 
-    Dijkstra(dist, up, graph, n, d, start);
+    dijkstra(dist, up, graph, n, d, start);
 
     EXPECT_EQ(dist[0], 0);  
     EXPECT_EQ(dist[1], 3); 
@@ -76,7 +76,7 @@ TEST(DijkstraTest, disconnected_graph_test) {
 
     graph[0].push_back(pair<int, int>(1, 5));
 
-    Dijkstra(dist, up, graph, n, d, start);
+    dijkstra(dist, up, graph, n, d, start);
 
     EXPECT_EQ(dist[0], 0);
     EXPECT_EQ(dist[1], 5);
@@ -100,7 +100,7 @@ TEST(DijkstraTest, negative_weight_graph_test) {
     graph[0].push_back(pair<int, int>(1, -2));
     graph[1].push_back(pair<int, int>(2, 4));
 
-    Dijkstra(dist, up, graph, n, d, start);
+    dijkstra(dist, up, graph, n, d, start);
 
     EXPECT_EQ(dist[0], 0);
     EXPECT_EQ(dist[1], -2);
@@ -118,7 +118,7 @@ TEST(DijkstraTest, single_edge_test) {
 
     graph[0].push_back(pair<int, int>(1, 7));
 
-    Dijkstra(dist, up, graph, n, d, start);
+    dijkstra(dist, up, graph, n, d, start);
 
     EXPECT_EQ(dist[0], 0);
     EXPECT_EQ(dist[1], 7);
@@ -144,7 +144,7 @@ TEST(DijkstraTest, fully_connected_graph_test) {
     graph[2].push_back(pair<int, int>(0, 1));
     graph[2].push_back(pair<int, int>(1, 5));
 
-    Dijkstra(dist, up, graph, n, d, start);
+    dijkstra(dist, up, graph, n, d, start);
 
     EXPECT_EQ(dist[0], 0);
     EXPECT_EQ(dist[1], 6);
@@ -165,7 +165,7 @@ TEST(DijkstraTest, two_node_graph_test) {
 
     graph[0].push_back(pair<int, int>(1, 10));
 
-    Dijkstra(dist, up, graph, n, d, start);
+    dijkstra(dist, up, graph, n, d, start);
 
     EXPECT_EQ(dist[0], 0);
     EXPECT_EQ(dist[1], 10);
@@ -185,7 +185,7 @@ TEST(DijkstraTest, three_node_cycle_graph_test) {
     graph[1].push_back(pair<int, int>(2, 3));
     graph[2].push_back(pair<int, int>(0, 4));
 
-    Dijkstra(dist, up, graph, n, d, start);
+    dijkstra(dist, up, graph, n, d, start);
 
     EXPECT_EQ(dist[0], 0);
     EXPECT_EQ(dist[1], 2);
@@ -209,7 +209,7 @@ TEST(DijkstraTest, multiple_edges_test) {
     graph[1].push_back(pair<int, int>(3, 1));
     graph[2].push_back(pair<int, int>(3, 3));
 
-    Dijkstra(dist, up, graph, n, d, start);
+    dijkstra(dist, up, graph, n, d, start);
 
     EXPECT_EQ(dist[0], 0);
     EXPECT_EQ(dist[1], 2);
@@ -233,7 +233,7 @@ TEST(DijkstraTest, large_graph_test) {
         graph[i].push_back(pair<int, int>(i + 1, 1));
     }
 
-    Dijkstra(dist, up, graph, n, d, start);
+    dijkstra(dist, up, graph, n, d, start);
 
     EXPECT_EQ(dist[0], 0);
     for (int i = 1; i < n; ++i) {
@@ -254,7 +254,7 @@ TEST(DijkstraTest, zero_weight_edge_test) {
     graph[0].push_back(pair<int, int>(1, 0));
     graph[1].push_back(pair<int, int>(2, 5));
 
-    Dijkstra(dist, up, graph, n, d, start);
+    dijkstra(dist, up, graph, n, d, start);
 
     EXPECT_EQ(dist[0], 0);
     EXPECT_EQ(dist[1], 0);
@@ -279,7 +279,7 @@ TEST(DijkstraTest, graph_with_multiple_paths_test) {
     graph[2].push_back(pair<int, int>(3, 10));
     graph[3].push_back(pair<int, int>(4, 3));
 
-    Dijkstra(dist, up, graph, n, d, start);
+    dijkstra(dist, up, graph, n, d, start);
 
     EXPECT_EQ(dist[0], 0);
     EXPECT_EQ(dist[1], 7);

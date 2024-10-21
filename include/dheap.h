@@ -5,22 +5,19 @@
 
 class DHeap {
 private:
-    int d;
-    vector<pair<int, int>> v;
+	int d_;
+	vector<pair<int, int>> v_;
 
-private:
-    size_t minChild(size_t i);        
-    size_t lastChild(size_t i) const;  
-    size_t firstChild(size_t i) const; 
-    size_t father(size_t i) const;   
-    void siftDown(size_t i);
-    void siftUp(size_t i);
-
+	size_t MinChild(size_t i);
+	size_t LastChild(size_t i) const;
+	size_t FirstChild(size_t i) const;
+	size_t Father(size_t i) const;
+	void SiftDown(size_t i);
+	void SiftUp(size_t i);
 public:
-    DHeap(int d);
-
-    void insert(int key, int value);
-    pair<int, int> extractMin();
-    bool isEmpty() const;
+	DHeap(int d);
+	void Insert(int key, int value);
+	pair<int, int> ExtractMin();
+	bool IsEmpty() const;
 };
 #endif 

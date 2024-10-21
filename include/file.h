@@ -5,7 +5,7 @@
 #include "vector.h"
 #include "pair.h"
 
-std::string get_path() {
+std::string getPath() {
     std::string path;
     do {
         std::cout << "Enter the file path:";
@@ -21,8 +21,7 @@ std::string get_path() {
     } while (true);
 }
 
-
-vector<vector<pair<int, int>>> parseAdjacencyList(const std::string& filename, int &n) {
+vector<vector<pair<int, int>>> parseAdjacencyList(const std::string& filename, int& n) {
     std::ifstream file(filename);
     vector<vector<pair<int, int>>> graph;
 
@@ -36,7 +35,7 @@ vector<vector<pair<int, int>>> parseAdjacencyList(const std::string& filename, i
         std::string pairStr;
 
         while (std::getline(iss, pairStr, ')')) {
-            if (pairStr.empty()) continue; 
+            if (pairStr.empty()) continue;
 
             size_t pos = pairStr.find('(');
             if (pos != std::string::npos) {
@@ -44,11 +43,10 @@ vector<vector<pair<int, int>>> parseAdjacencyList(const std::string& filename, i
                 std::istringstream numStream(numbers);
                 int first, second;
 
-
                 if (numStream >> first) {
-                    numStream.ignore(); 
+                    numStream.ignore();
                     if (numStream >> second) {
-                        current.push_back({ first ,second });
+                        current.push_back({ first, second });
                     }
                 }
             }
@@ -60,7 +58,6 @@ vector<vector<pair<int, int>>> parseAdjacencyList(const std::string& filename, i
     file.close();
     return graph;
 }
-
 
 void writeResultsToFile(const vector<int>& dist, const vector<int>& up, const std::string& filename) {
     std::ofstream outFile(filename);
@@ -77,5 +74,6 @@ void writeResultsToFile(const vector<int>& dist, const vector<int>& up, const st
 
     outFile.close();
 }
+
 
 #endif 
