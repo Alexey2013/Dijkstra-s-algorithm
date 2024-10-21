@@ -11,7 +11,7 @@ private:
 
 public:
     vector();
-    explicit vector(const size_t n);
+    vector(const size_t n);
     vector(const size_t n, const T& default_value);
     vector(const vector<T>& other);
     vector<T>& operator=(const vector<T>& other);
