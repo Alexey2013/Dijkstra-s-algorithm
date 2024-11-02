@@ -1,0 +1,102 @@
+\subsection{Описание класса DHeap}
+\begin{verbatim}
+class DHeap {
+private:
+    int d_;
+    vector<pair<int, int>> v_;
+
+    size_t MinChild(size_t i);
+    size_t LastChild(size_t i) const;
+    size_t FirstChild(size_t i) const;
+    size_t Father(size_t i) const;
+    void SiftDown(size_t i);
+    void SiftUp(size_t i);
+public:
+    DHeap(int d);
+    void Insert(int key, int value);
+    pair<int, int> ExtractMin();
+    bool IsEmpty() const;
+};
+\end{verbatim}
+
+\subsection*{Поля}
+
+\begin{itemize}
+    \item \texttt{d\_} -- количество детей для каждого узла в куче.
+    \item \texttt{v\_} -- вектор пар, хранящий ключи и значения в куче.
+\end{itemize}
+
+\subsection*{Методы}
+\begin{itemize}
+    \item \texttt{DHeap(int d);}
+    \begin{itemize}
+        \item \textbf{Назначение:} Конструктор, создающий кучу с заданным числом детей для каждого узла.
+        \item \textbf{Входные параметры:} \texttt{d} -- количество детей для каждого узла.
+        \item \textbf{Выходные параметры:} отсутствуют.
+    \end{itemize}
+
+    \item \texttt{void Insert(int key, int value);}
+    \begin{itemize}
+        \item \textbf{Назначение:} Вставляет новый элемент в кучу.
+        \item \textbf{Входные параметры:} \texttt{key} -- ключ элемента, \texttt{value} -- значение элемента.
+        \item \textbf{Выходные параметры:} отсутствуют.
+    \end{itemize}
+
+    \item \texttt{pair<int, int> ExtractMin();}
+    \begin{itemize}
+        \item \textbf{Назначение:} Извлекает элемент с минимальным ключом из кучи.
+        \item \textbf{Входные параметры:} отсутствуют.
+        \item \textbf{Выходные параметры:} пара \texttt{(key, value)} минимального элемента.
+    \end{itemize}
+
+    \item \texttt{bool IsEmpty() const;}
+    \begin{itemize}
+        \item \textbf{Назначение:} Проверяет, пуста ли куча.
+        \item \textbf{Входные параметры:} отсутствуют.
+        \item \textbf{Выходные параметры:} \texttt{true}, если куча пуста, иначе \texttt{false}.
+    \end{itemize}
+
+    \item \texttt{size\_t MinChild(size\_t i);}
+    \begin{itemize}
+        \item \textbf{Назначение:} Находит индекс минимального дочернего узла для узла с индексом \texttt{i}.
+        \item \textbf{Входные параметры:} \texttt{i} -- индекс узла.
+        \item \textbf{Выходные параметры:} индекс минимального дочернего узла.
+    \end{itemize}
+
+    \item \texttt{size\_t LastChild(size\_t i) const;}
+    \begin{itemize}
+        \item \textbf{Назначение:} Находит индекс последнего дочернего узла для узла с индексом \texttt{i}.
+        \item \textbf{Входные параметры:} \texttt{i} -- индекс узла.
+        \item \textbf{Выходные параметры:} индекс последнего дочернего узла.
+    \end{itemize}
+
+    \item \texttt{size\_t FirstChild(size\_t i) const;}
+    \begin{itemize}
+        \item \textbf{Назначение:} Находит индекс первого дочернего узла для узла с индексом \texttt{i}.
+        \item \textbf{Входные параметры:} \texttt{i} -- индекс узла.
+        \item \textbf{Выходные параметры:} индекс первого дочернего узла.
+    \end{itemize}
+
+    \item \texttt{size\_t Father(size\_t i) const;}
+    \begin{itemize}
+        \item \textbf{Назначение:} Находит индекс родительского узла для узла с индексом \texttt{i}.
+        \item \textbf{Входные параметры:} \texttt{i} -- индекс узла.
+        \item \textbf{Выходные параметры:} индекс родительского узла.
+    \end{itemize}
+
+    \item \texttt{void SiftDown(size\_t i);}
+    \begin{itemize}
+        \item \textbf{Назначение:} Восстанавливает свойства кучи, двигая узел вниз по дереву.
+        \item \textbf{Входные параметры:} \texttt{i} -- индекс узла.
+        \item \textbf{Выходные параметры:} отсутствуют.
+    \end{itemize}
+
+    \item \texttt{void SiftUp(size\_t i);}
+    \begin{itemize}
+        \item \textbf{Назначение:} Восстанавливает свойства кучи, двигая узел вверх по дереву.
+        \item \textbf{Входные параметры:} \texttt{i} -- индекс узла.
+        \item \textbf{Выходные параметры:} отсутствуют.
+    \end{itemize}
+\end{itemize}
+
+
