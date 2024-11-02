@@ -56,23 +56,21 @@
 %C++ code 
 \usepackage{listings}
 \usepackage{color}
+\usepackage{listings}
 % параметры стиля
-\lstdefinestyle{mystyle}{
-	basicstyle=\footnotesize,
-	breakatwhitespace=false, 
-	breaklines=true,
-	captionpos=b,
-	keepspaces=true, 
-	numbers=left,
-	numbersep=5pt,  % номера строк
-	showspaces=false, % не показывать пробелы
-	showstringspaces=false,
-	showtabs=false,                  
-	tabsize=2
+\lstdefinestyle{cpp}{
+    language=C++,                % Установите язык C++
+    basicstyle=\ttfamily\footnotesize,  % Шрифт кода
+    keywordstyle=\color{blue},   % Цвет ключевых слов
+    commentstyle=\color{green},  % Цвет комментариев
+    stringstyle=\color{red},     % Цвет строк
+    numbers=left,                % Номера строк слева
+    numberstyle=\tiny\color{gray}, % Стиль номеров строк
+    frame=single,                % Рамка вокруг кода
+    breaklines=true              % Перенос длинных строк
 }
-
 % применяем стиль
-\lstset{style=mystyle}
+\lstset{style=cpp}
 % используем заданный нами моноширинный шрифт
 \lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
 

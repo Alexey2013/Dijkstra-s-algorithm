@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.10.29)  2 NOV 2024 09:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.10.29)  2 NOV 2024 18:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/alexe/Desktop/отчет/main.tex
-(c:/Users/alexe/Desktop/отчет/main.tex
+**c:/Users/alexe/Desktop/Dijkstra-s-algorithm/main.tex
+(c:/Users/alexe/Desktop/Dijkstra-s-algorithm/main.tex
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-09-10>
 (C:\Users\alexe\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -848,6 +848,13 @@ File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
 File: listings.cfg 2024/09/23 1.10c listings configuration
 ))
 Package: listings 2024/09/23 1.10c (Carsten Heinz)
+ (C:\Users\alexe\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+) (C:\Users\alexe\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+) (C:\Users\alexe\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
+File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
+)
 \c@theorem=\count348
 \c@corollary=\count349
 \c@lemma=\count350
@@ -998,43 +1005,12 @@ l.63 \newpage
 
 [2
 
-] (main1.tex
-Package epstopdf Info: Source file: <picture/TimeAlg.eps>
-(epstopdf)                    date: 2024-01-28 20:45:36
-(epstopdf)                    size: 51693 bytes
-(epstopdf)             Output file: <picture/TimeAlg-eps-converted-to.pdf>
-(epstopdf)                    date: 2024-01-28 20:45:36
-(epstopdf)                    size: 21996 bytes
-(epstopdf)             Command: <miktex-epstopdf --outfile=picture/TimeAlg-eps-converted-to.pdf picture/TimeAlg.eps>
-(epstopdf)             \includegraphics on input line 55.
-Package epstopdf Info: Output file is already uptodate.
-
-
-pdfTeX warning: pdflatex (file ./picture/TimeAlg-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<picture/TimeAlg-eps-converted-to.pdf, id=42, 421.575pt x 315.1775pt>
-File: picture/TimeAlg-eps-converted-to.pdf Graphic file (type pdf)
-<use picture/TimeAlg-eps-converted-to.pdf>
-Package pdftex.def Info: picture/TimeAlg-eps-converted-to.pdf  used on input line 55.
-(pdftex.def)             Requested size: 421.57396pt x 315.17673pt.
-LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 56.
-(C:\Users\alexe\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\t2acmtt.fd
-File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
-))
+] (main1.tex) (main2.tex) (main3.tex)
 
 [3
 
 
-
-pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.69 	\include{conclusion}
-                          
-pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.69 	\include{conclusion}
-                           <./picture/TimeAlg-eps-converted-to.pdf>]
+]
 \openout2 = `conclusion.aux'.
 
  (conclusion.tex)
@@ -1044,7 +1020,11 @@ l.69 	\include{conclusion}
 ]
 \openout2 = `biblio.aux'.
 
- (biblio.tex)
+ (biblio.tex
+LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 5.
+ (C:\Users\alexe\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\t2acmtt.fd
+File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
+))
 
 [5
 
@@ -1053,30 +1033,38 @@ l.69 	\include{conclusion}
 ]
 \openout2 = `app.aux'.
 
- (app.tex)
+ (app.tex
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 2.
+ (application(Dheap).tex
 
 [6
 
 
 
-] (main.aux (introduction.aux) (conclusion.aux) (biblio.aux) (app.aux))
+]
+
+[7]) (application(Dijkstra).tex
+
+[8]))
+
+[9] (main.aux (introduction.aux) (conclusion.aux) (biblio.aux) (app.aux))
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-09-10>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 37264 strings out of 473898
- 835850 string characters out of 5726478
- 1322522 words of memory out of 5000000
- 59455 multiletter control sequences out of 15000+600000
- 569678 words of font info for 64 fonts, out of 8000000 for 9000
+ 37984 strings out of 473898
+ 843518 string characters out of 5726478
+ 1742869 words of memory out of 5000000
+ 59982 multiletter control sequences out of 15000+600000
+ 570719 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 104i,6n,104p,779b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\alexe\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\latt1200.pk> <C:\Users\alexe\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\lati1200.pk> <C:\Users\alexe\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1200.pk> <C:\Users\alexe\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1200.pk> <C:\Users\alexe\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1728.pk> <C:\Users\alexe\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1728.pk> <C:\Users\alexe\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1440.pk> <C:\Users\alexe\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1440.pk><C:/Users/alexe/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/alexe/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/alexe/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb>
-Output written on main.pdf (7 pages, 182513 bytes).
+ 104i,6n,104p,1224b,2152s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\alexe\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\latt1000.pk> <C:\Users\alexe\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm0600.pk> <C:\Users\alexe\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\latt1200.pk> <C:\Users\alexe\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1200.pk> <C:\Users\alexe\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1200.pk> <C:\Users\alexe\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1728.pk> <C:\Users\alexe\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1728.pk> <C:\Users\alexe\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1440.pk> <C:\Users\alexe\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1440.pk><C:/Users/alexe/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/alexe/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb>
+Output written on main.pdf (10 pages, 204103 bytes).
 PDF statistics:
- 457 PDF objects out of 1000 (max. 8388607)
- 28 named destinations out of 1000 (max. 500000)
- 58 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 731 PDF objects out of 1000 (max. 8388607)
+ 200 named destinations out of 1000 (max. 500000)
+ 45 words of extra memory for PDF output out of 10000 (max. 10000000)
 
