@@ -1,0 +1,95 @@
+\subsection{Описание функций}
+
+\subsection*{Функция для создания графа}
+
+\begin{verbatim}
+    vector<vector<pair<int, int>>> generateGraph(int n, int m, int q, int r) {
+        vector<vector<pair<int, int>>> adj_list(n);
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<> dist(q, r);
+        vector<vector<bool>> was(n, vector<bool>(n, false));
+    
+        for (int edge_count = 0; edge_count < min(n * (n - 1) / 2, m);) {
+            int i = rand() % n, j = rand() % n;
+            if (i != j && !was[i][j]) {
+                int weight = dist(gen);
+                adj_list[i].push_back({ j, weight });
+                adj_list[j].push_back({ i, weight });
+                was[i][j] = was[j][i] = true;
+                ++edge_count;
+            }
+        }
+        return adj_list;
+    }
+    \end{verbatim}
+
+Эта функция \texttt{generateGraph} предназначена для создания случайного взвешенного графа. Она создает список смежности для графа с заданным количеством узлов и случайным набором рёбер, каждое из которых имеет случайный вес в заданном диапазоне.
+
+\subsubsection*{Назначение:}
+Генерация случайного неориентированного графа с определённым числом узлов и рёбер, где веса рёбер выбираются случайным образом в указанном диапазоне. Такой граф может использоваться для тестирования алгоритмов на больших случайных данных.
+
+\subsubsection*{Параметры:}
+\begin{itemize}
+    \item \texttt{int n} — количество узлов (вершин) графа.
+    \item \texttt{int m} — максимальное количество рёбер.
+    \item \texttt{int q} — минимально возможный вес рёбер.
+    \item \texttt{int r} — максимально возможный вес рёбер.
+\end{itemize}
+
+\subsubsection*{Возвращаемое значение:}
+Возвращает граф в виде списка смежности, представленного вектором векторов пар. Каждая пара в списке смежности содержит узел, с которым соединена вершина, и вес рёбра.
+
+
+
+\subsection*{Алгоритм Дейкстры}
+
+\begin{verbatim}
+    double dijkstra(vector<int>& dist, vector<int>& up, 
+                    vector<vector<pair<int, int>>> graph, int n, int d, int start) {
+        vector<bool> processed(n, false);
+        fill(dist.begin(), dist.end(), INT_MAX);
+        fill(up.begin(), up.end(), -1);
+        dist[start] = 0;
+        DHeap dHeap(d);
+        dHeap.Insert(start, 0);
+    
+        auto begin = chrono::high_resolution_clock::now();
+    
+        while (!dHeap.IsEmpty()) {
+            auto [i, currentDist] = dHeap.ExtractMin();
+            if (processed[i]) continue;
+            processed[i] = true;
+            
+            for (auto& [j, weight] : graph[i]) {
+                int newDist = currentDist + weight;
+                if (newDist < dist[j]) {
+                    dist[j] = newDist;
+                    up[j] = i;
+                    dHeap.Insert(j, newDist);
+                }
+            }
+        }
+    
+        auto end = chrono::high_resolution_clock::now();
+        return chrono::duration<double>(end - begin).count();
+    }
+    \end{verbatim}
+
+Функция \texttt{dijkstra} реализует алгоритм Дейкстры для нахождения кратчайших путей от заданной вершины до всех остальных. Алгоритм использует специальную структуру данных \texttt{DHeap}, которая позволяет ускорить поиск на графах.
+
+\subsubsection*{Назначение:}
+Вычисление кратчайших расстояний от начального узла до всех других узлов графа с неотрицательными весами рёбер.
+
+\subsubsection*{Параметры:}
+\begin{itemize}
+    \item \texttt{vector<int>\& dist} — вектор, в который записываются минимальные расстояния от начального узла до всех других узлов.
+    \item \texttt{vector<int>\& up} — вектор предшественников, где для каждого узла сохраняется его предыдущий узел в кратчайшем пути.
+    \item \texttt{vector<vector<pair<int, int>>> graph} — граф, представленный в виде списка смежности.
+    \item \texttt{int n} — количество узлов в графе.
+    \item \texttt{int d} — степень структуры данных \texttt{DHeap}, которая определяет количество детей в каждом узле кучи.
+    \item \texttt{int start} — начальный узел, с которого начинается поиск кратчайших путей.
+\end{itemize}
+
+\subsubsection*{Возвращаемое значение:}
+Возвращает время выполнения алгоритма в секундах, что позволяет оценить его эффективность на данном графе.

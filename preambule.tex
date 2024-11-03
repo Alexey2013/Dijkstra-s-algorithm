@@ -31,6 +31,7 @@
 \linespread{1.3} % полуторный интервал
 \frenchspacing
 
+%\sloppy
 
 \usepackage[table,xcdraw]{xcolor}
 \usepackage{wrapfig}
@@ -66,6 +67,19 @@
     frame=single,                % Рамка вокруг кода
     breaklines=true              % Перенос длинных строк
 }
+
+\lstdefinestyle{pseudocode} {
+    language=Pascal,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true
+}
+
 % применяем стиль
 \lstset{style=cpp}
 % используем заданный нами моноширинный шрифт

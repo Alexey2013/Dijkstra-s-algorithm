@@ -1,0 +1,103 @@
+\subsection{Класс DHeap}
+
+Класс $DHeap$ реализует $d$-арную кучу, где $d$ — количество дочерних узлов для каждого узла.
+
+\begin{itemize}[label=•, labelsep=1em]
+    \item \texttt{Конструктор} принимает целое значение $d$ и проверяет, что оно больше или равно 2. Если $d < 2$, генерируется исключение.
+\end{itemize}
+
+\begin{itemize}[label=•, labelsep=1em]
+    \item \texttt{Insert} вставляет новый элемент в кучу. Элемент добавляется в конец вектора, после чего вызывается функция \texttt{SiftUp} для поддержания свойств кучи.
+\end{itemize}
+
+\begin{itemize}[label=•, labelsep=1em]
+    \item \texttt{ExtractMin} извлекает минимальный элемент из кучи. Если куча пуста, генерируется исключение. Минимальный элемент сохраняется, последний элемент вектора перемещается на место корня, после чего вызывается \texttt{SiftDown}.
+\end{itemize}
+\begin{lstlisting}[language=Pascal]
+    function ExtractMin(var v: array of Integer): Integer;
+    begin
+        if IsEmpty(v) then
+            raise Exception.Create('Heap is empty');
+    
+        var min_element := v[0];
+        v[0] := v[High(v)];
+        SetLength(v, Length(v) - 1);
+        if not IsEmpty(v) then
+            SiftDown(v, 0);
+    
+        Result := min_element;
+    end;
+\end{lstlisting}
+
+\begin{itemize}[label=•, labelsep=1em]
+    \item \texttt{IsEmpty} проверяет, пуста ли куча.
+\end{itemize}
+
+\begin{itemize}[label=•, labelsep=1em]
+    \item \texttt{SiftDown} восстанавливает свойства кучи, начиная с узла $i$. Перемещает элемент вниз по дереву, пока он не станет больше своих дочерних элементов.
+\end{itemize}
+\begin{lstlisting}[language=Pascal]
+    procedure SiftDown(var v: array of Integer; index: Integer);
+    var
+        smallest, left, right: Integer;
+    begin
+        smallest := index;
+        left := 2 * index + 1;
+        right := 2 * index + 2;
+    
+        if (left < Length(v)) and (v[left] < v[smallest]) then
+            smallest := left;
+    
+        if (right < Length(v)) and (v[right] < v[smallest]) then
+            smallest := right;
+    
+        if smallest <> index then
+        begin
+            var temp := v[index];
+            v[index] := v[smallest];
+            v[smallest] := temp;
+    
+            SiftDown(v, smallest);
+        end;
+    end;
+    \end{lstlisting}
+
+    \begin{itemize}[label=•, labelsep=1em]
+        \item \texttt{SiftUp} восстанавливает свойства кучи, начиная с узла $i$. Перемещает элемент вверх по дереву, пока он не станет меньше своих родительских узлов.
+    \end{itemize}
+    
+    \begin{lstlisting}[language=Pascal]
+    procedure DHeap.SiftUp(i: Integer);
+    var
+        key0, value0: Integer;
+        p: Integer;
+    begin
+        key0 := v_[i].first;
+        value0 := v_[i].second;
+        p := Father(i);
+    
+        while (i <> 0) and (v_[p].second > value0) do
+        begin
+            v_[i] := v_[p];
+            i := p;
+            p := Father(i);
+        end;
+        v_[i] := (key0, value0);
+    end;
+    \end{lstlisting}
+    
+    \begin{itemize}[label=•, labelsep=1em]
+        \item \texttt{MinChild} находит индекс минимального дочернего элемента для узла $i$. Если у узла нет дочерних элементов, возвращается индекс самого узла.
+    \end{itemize}
+    
+    \begin{itemize}[label=•, labelsep=1em]
+        \item \texttt{LastChild} возвращает индекс последнего дочернего элемента для узла $i$. Если у узла нет дочерних элементов, возвращается -1.
+    \end{itemize}
+    
+    \begin{itemize}[label=•, labelsep=1em]
+        \item \texttt{FirstChild} возвращает индекс первого дочернего элемента для узла $i$. Если узел не имеет дочерних элементов, возвращается -1.
+    \end{itemize}
+    
+    \begin{itemize}[label=•, labelsep=1em]
+        \item \texttt{Father} возвращает индекс родительского узла для узла $i$.
+    \end{itemize}
