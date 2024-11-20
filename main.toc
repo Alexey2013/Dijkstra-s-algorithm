@@ -1,0 +1,14 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{Введение}{2}{section*.2}%
+\contentsline {section}{\numberline {1}Основные определения}{3}{section.1}%
+\contentsline {section}{\numberline {2}Математическая постановка задачи}{4}{section.2}%
+\contentsline {section}{\numberline {3}Описание алгоритмов}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Класс DHeap}{5}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Алгоритм Дейкстры}{7}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Программная реализация алгоритма}{10}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Описание класса DHeap}{10}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Описание функций}{12}{subsection.4.2}%
+\contentsline {section}{\numberline {5}Эксперименты}{15}{section.5}%
+\contentsline {section}{Заключение}{18}{section*.18}%
+\contentsline {section}{Список литературы}{19}{section*.19}%
+\contentsline {section}{Приложения}{20}{section*.20}%
